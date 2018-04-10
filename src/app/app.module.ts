@@ -1,18 +1,85 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { LayoutModule } from '@angular/cdk/layout';
+import { CdkTableModule } from '@angular/cdk/table';
+
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatToolbarModule,
+  MatTableModule,
+  MatSidenavModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatListModule,
+  MatRippleModule,
+  MatMenuModule,
+  MatIconModule,
+  MatButtonToggleModule,
+  MatTooltipModule,
+  MatTabsModule,
+  MatCardModule
+} from '@angular/material';
+
+import { StateService } from './state.service';
 
 import { AppComponent } from './app.component';
+import { CursorComponent } from './cursor/cursor.component';
+import { MarkersComponent } from './markers/markers.component';
+import { ConstCirclesComponent } from './const-circles/const-circles.component';
 
+const routes: Routes = [
+  { path: 'cursor', component: CursorComponent },
+  { path: 'markers', component: MarkersComponent },
+  { path: 'const-circles', component: ConstCirclesComponent },
+  { path: '', redirectTo: '/cursor', pathMatch: 'full' },
+  { path: '**', redirectTo: '/cursor', pathMatch: 'full' },
+  // { path: 'edit-test/:id', component: EditTestComponent },
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CursorComponent,
+    MarkersComponent,
+    ConstCirclesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+    HttpModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    LayoutModule,
+    CdkTableModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatTableModule,
+    MatSidenavModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatListModule,
+    MatRippleModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonToggleModule,
+    MatTooltipModule,
+    MatTabsModule,
+    MatCardModule
   ],
-  providers: [],
+  exports: [RouterModule],
+  providers: [StateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

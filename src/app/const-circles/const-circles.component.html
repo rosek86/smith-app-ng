@@ -1,0 +1,43 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>Constant Circles</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="table">
+  <mat-tab-group>
+    <mat-tab label="Impedance">
+      <div class="tab-content">
+        <mat-checkbox [(ngModel)]="constCircles.impedance.display" (change)="change()">
+          Constant Circles
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="constCircles.impedance.minor" (change)="change()">
+          Minor Constant Circles
+        </mat-checkbox>
+      </div>
+    </mat-tab>
+    <mat-tab label="Admittance">
+      <div class="tab-content">
+        <mat-checkbox [(ngModel)]="constCircles.admittance.display" (change)="change()">
+          Constant Circles
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="constCircles.admittance.minor" (change)="change()">
+          Minor Constant Circles
+        </mat-checkbox>
+      </div>
+    </mat-tab>
+    <mat-tab label="Q">
+      <div class="tab-content">
+        <mat-checkbox [(ngModel)]="constCircles.q.display" (change)="change()">
+          Constant Circles
+        </mat-checkbox>
+      </div>
+    </mat-tab>
+    <mat-tab label="SWR">
+      <div class="tab-content">
+        <mat-checkbox [(ngModel)]="constCircles.swr.display" (change)="change()">
+          Constant Circles
+        </mat-checkbox>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
