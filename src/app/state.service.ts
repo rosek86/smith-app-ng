@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Smith } from '../../libs/smith/src/Smith';
+import { S1P } from '../../libs/smith/src/SnP';
 
 @Injectable()
 export class StateService {
@@ -11,6 +12,7 @@ export class StateService {
     q: { display: false }
   };
 
-  constructor() { }
+  dataSets: S1P[] = [];
 
+  constructor() { }
 }

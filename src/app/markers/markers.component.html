@@ -12,7 +12,7 @@
     </mat-button-toggle-group>
   </mat-toolbar-row>
 </mat-toolbar>
-<div class="table">
+<div>
   <mat-table #matTable [dataSource]="dataSourceInput">
     <!-- Marker Column -->
     <ng-container matColumnDef="marker">
@@ -33,6 +33,6 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-    <mat-row *matRowDef="let data; columns: columnsToDisplay;"></mat-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay;" class="row" (click)="markerDetails(row)"></mat-row>
   </mat-table>
 </div>

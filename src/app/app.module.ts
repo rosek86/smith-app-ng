@@ -34,14 +34,17 @@ import { AppComponent } from './app.component';
 import { CursorComponent } from './cursor/cursor.component';
 import { MarkersComponent } from './markers/markers.component';
 import { ConstCirclesComponent } from './const-circles/const-circles.component';
+import { MarkerDetailsComponent } from './marker-details/marker-details.component';
+import { PlotComponent } from './plot/plot.component';
 
 const routes: Routes = [
+  { path: 'plot', component: PlotComponent },
   { path: 'cursor', component: CursorComponent },
   { path: 'markers', component: MarkersComponent },
   { path: 'const-circles', component: ConstCirclesComponent },
+  { path: 'marker/:datasetId/:markerId', component: MarkerDetailsComponent },
   { path: '', redirectTo: '/cursor', pathMatch: 'full' },
   { path: '**', redirectTo: '/cursor', pathMatch: 'full' },
-  // { path: 'edit-test/:id', component: EditTestComponent },
 ];
 
 @NgModule({
@@ -49,13 +52,15 @@ const routes: Routes = [
     AppComponent,
     CursorComponent,
     MarkersComponent,
-    ConstCirclesComponent
+    ConstCirclesComponent,
+    MarkerDetailsComponent,
+    PlotComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { enableTracing: true }),
     HttpModule,
     HttpClientModule,
     ReactiveFormsModule,

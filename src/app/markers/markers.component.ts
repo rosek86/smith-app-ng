@@ -9,6 +9,8 @@ import { SmithMarkerEvent, SmithEventType } from '../../../libs/smith/src/Smith'
 import { S1PEntry } from '../../../libs/smith/src/SnP';
 
 interface Element {
+  datasetNo: number;
+  markerNo: number;
   marker: string;
   impedance: string;
   frequency: string;
@@ -64,6 +66,7 @@ export class MarkersComponent implements OnInit {
     const freq = entry.freq;
 
     return {
+      datasetNo, markerNo,
       marker: `${datasetNo + 1}-${markerNo + 1}`,
       impedance: smith.formatComplex(imp, 'Ω'),
       frequency: smith.formatNumber(freq) + 'Hz'
@@ -75,5 +78,9 @@ export class MarkersComponent implements OnInit {
   }
 
   public selectMarkers(): void {
+  }
+
+  public markerDetails(row: Element): void {
+    this.router.navigate(['marker', row.datasetNo, row.markerNo ]);
   }
 }

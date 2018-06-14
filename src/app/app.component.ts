@@ -38,6 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
       const values = this.parseTouchstone(data);
 
       this.state.smith.addS1P(values);
+      this.state.dataSets.push(values);
     }
   }
 
