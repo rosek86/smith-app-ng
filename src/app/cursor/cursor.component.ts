@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { StateService } from '../state.service';
 import { SmithMarkerEvent, SmithCursorEvent, SmithEventType } from '../../../libs/smith/src/Smith';
 import { Router } from '@angular/router';

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { StateService } from '../state.service';
 import { MatTableDataSource, MatTable } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { SmithMarkerEvent, SmithEventType } from '../../../libs/smith/src/Smith';

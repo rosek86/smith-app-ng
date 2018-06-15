@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subscription } from 'rxjs';
 import { StateService } from '../state.service';
 import { SmithMarkerEvent, SmithCursorEvent, SmithEventType } from '../../../libs/smith/src/Smith';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
 
 interface Element {
   name: string; value?: string; value2?: string;

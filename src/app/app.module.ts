@@ -3,9 +3,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { CdkTableModule } from '@angular/cdk/table';
 
@@ -36,6 +35,7 @@ import { MarkersComponent } from './markers/markers.component';
 import { ConstCirclesComponent } from './const-circles/const-circles.component';
 import { MarkerDetailsComponent } from './marker-details/marker-details.component';
 import { PlotComponent } from './plot/plot.component';
+import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
   { path: 'plot', component: PlotComponent },
@@ -54,14 +54,14 @@ const routes: Routes = [
     MarkersComponent,
     ConstCirclesComponent,
     MarkerDetailsComponent,
-    PlotComponent
+    PlotComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot(routes, { enableTracing: true }),
-    HttpModule,
     HttpClientModule,
     ReactiveFormsModule,
     LayoutModule,
