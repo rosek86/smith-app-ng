@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StateService } from '../state.service';
+
+import { SmithConstantCircle } from '../../../libs/smith/src/SmithConstantCircle';
 import { S1P } from '../../../libs/smith/src/SnP';
 
 import * as d3 from 'd3';
@@ -11,7 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./plot.component.css']
 })
 export class PlotComponent implements OnInit, OnDestroy {
-  plotTitle = 'Magnitude';
+  plotTitle = 'Plot';
 
   private margin = { top: 20, right: 20, bottom: 50, left: 50 };
   private xAxis: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
@@ -52,12 +54,18 @@ export class PlotComponent implements OnInit, OnDestroy {
   }
 
   private calculate(data: S1P): [number, number][] {
-    return data.map((e): [number, number] => [
-      e.freq,
-      20 * Math.log10(Math.sqrt(
-        e.point[0] * e.point[0] + e.point[1] * e.point[1]
-      ))
-    ]);
+    const calculator = new SmithConstantCircle(50);
+
+    return data.map((e): [number, number] => {
+      const magnitude =
+        calculator.dB(
+          calculator.magnitude(
+            e.point
+          )
+        );
+
+      return [ e.freq, magnitude ];
+    });
   }
 
   private draw() {
@@ -103,7 +111,7 @@ export class PlotComponent implements OnInit, OnDestroy {
       .attr('x', 0 - (containerSize.height / 2))
       .attr('dy', '0.71em')
       .attr('text-anchor', 'middle')
-      .text('Magnitude (dB)');
+      .text('Reflection Coefficient (dB)');
 
     this.path = g.append('path');
     this.path

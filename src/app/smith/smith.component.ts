@@ -16,10 +16,6 @@ export class SmithComponent implements OnInit {
 
   ngOnInit(): void {
     this.state.smith.draw('#smith', '100%');
-
-    // if (this.state.dataSets.length > 0) {
-    //   this.state.smith.addS1P(this.state.dataSets[0]);
-    // }
   }
 
   edit(): void {
