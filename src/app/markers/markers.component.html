@@ -25,6 +25,6 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: columnsToDisplay;" class="row" (click)="markerDetails(row)"></mat-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay;" class="row" matTooltip="Details" (click)="markerDetails(row)"></mat-row>
   </mat-table>
 </div>
