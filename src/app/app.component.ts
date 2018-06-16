@@ -35,9 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (input.files && input.files.length > 0) {
       const data = await this.openFile(input.files[0]);
       const values = this.parseTouchstone(data);
-
-      this.state.smith.addS1P(values);
-      this.state.dataSets.push(values);
+      this.state.addDataSet(values);
     }
   }
 

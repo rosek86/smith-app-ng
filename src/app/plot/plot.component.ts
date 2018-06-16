@@ -1,34 +1,66 @@
-import { Component, OnInit } from '@angular/core';
-import * as d3 from 'd3';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StateService } from '../state.service';
+import { S1P } from '../../../libs/smith/src/SnP';
+
+import * as d3 from 'd3';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-plot',
   templateUrl: './plot.component.html',
   styleUrls: ['./plot.component.css']
 })
-export class PlotComponent implements OnInit {
+export class PlotComponent implements OnInit, OnDestroy {
   plotTitle = 'Magnitude';
 
-  private margin = { top: 20, right: 20, bottom: 30, left: 50 };
+  private margin = { top: 20, right: 20, bottom: 50, left: 50 };
   private xAxis: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
   private yAxis: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
   private line: d3.Line<[number, number]>;
   private path: d3.Selection<d3.BaseType, {}, HTMLElement, any>;
 
-  private data = [ [ 1, 1 ], [ 2, 2 ] ];
+  private subscription: Subscription;
 
-  constructor(state: StateService) {
-    if (state.dataSets.length === 0) {
-      return;
-    }
+  private data = [];
 
-    this.data = state.dataSets[0].map((e) => [
-      e.freq, Math.sqrt(e.point[0] * e.point[0] + e.point[1] * e.point[1])
-    ]);
+  constructor(private state: StateService) {
+    this.subscription =  this.state.dataSetAdded.subscribe({
+      next: (data: S1P) => {
+        if (this.data.length !== 0) { return; }
+
+        setTimeout(() => {
+          this.data = this.calculate(data);
+          this.draw();
+        }, 0);
+      }
+    });
   }
 
   ngOnInit() {
+    if (this.state.dataSets.length === 0) {
+      return;
+    }
+
+    this.data = this.calculate(this.state.dataSets[0]);
+    this.draw();
+  }
+
+  ngOnDestroy() {
+    if (!!this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  private calculate(data: S1P): [number, number][] {
+    return data.map((e): [number, number] => [
+      e.freq,
+      20 * Math.log10(Math.sqrt(
+        e.point[0] * e.point[0] + e.point[1] * e.point[1]
+      ))
+    ]);
+  }
+
+  private draw() {
     const svg = d3.select('#plot')
       .attr('width', '100%')
       .attr('height', '100%');
@@ -53,7 +85,13 @@ export class PlotComponent implements OnInit {
       .attr('transform', `translate(0, ${containerSize.height})`)
       .call(
         d3.axisBottom(x).tickFormat((d: number) => (d / 1e9).toFixed(1))
-      );
+      )
+    .append('text')
+      .attr('fill', '#000')
+      .attr('x', containerSize.width / 2)
+      .attr('y', this.margin.bottom - 10)
+      .attr('text-anchor', 'middle')
+      .text('Frequency (GHz)');
 
     this.yAxis = g.append('g');
     this.yAxis
@@ -61,9 +99,10 @@ export class PlotComponent implements OnInit {
     .append('text')
       .attr('fill', '#000')
       .attr('transform', 'rotate(-90)')
-      .attr('y', 6)
+      .attr('y', 0 - (this.margin.left - 10))
+      .attr('x', 0 - (containerSize.height / 2))
       .attr('dy', '0.71em')
-      .attr('text-anchor', 'end')
+      .attr('text-anchor', 'middle')
       .text('Magnitude (dB)');
 
     this.path = g.append('path');
