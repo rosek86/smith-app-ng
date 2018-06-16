@@ -37,6 +37,9 @@ export class CursorComponent implements OnInit {
   constructor(private router: Router, private state: StateService) { }
 
   ngOnInit() {
+    if (this.state.smith === null) {
+      return;
+    }
     this.updateCursor(this.state.smith.CursorData);
 
     this.state.smith.setUserActionHandler((evt) => {
@@ -60,12 +63,5 @@ export class CursorComponent implements OnInit {
     this.data[6].value = `${evt.mismatchLoss.toFixed(3)}`;
     delete this.data[7];
     delete this.data[8];
-  }
-
-  public selectCursor(): void {
-  }
-
-  public selectMarkers(): void {
-    this.router.navigate([ '/markers' ]);
   }
 }

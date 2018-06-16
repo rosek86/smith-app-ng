@@ -1,0 +1,31 @@
+
+.content {
+  margin: 20px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 50% auto;
+  grid-template-rows: 100%;
+}
+
+.left-panel {
+  height: calc(100vh - 64px - 40px);
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.right-panel {
+  height: calc(100vh - 64px - 40px);
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.cursor-row {
+  min-width: 400px;
+}
+
+.cursor-toolbar-spacer {
+  flex: 1 1 auto;
+}
+.cursor-toolbar-icon {
+  padding: 0 14px;
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { StateService } from '../state.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class ConstCirclesComponent implements OnInit {
     q: { display: false }
   };
 
-  constructor(private state: StateService) {
+  constructor(private router: Router, private state: StateService) {
     this.constCircles = state.constCircles;
   }
 
@@ -30,5 +32,11 @@ export class ConstCirclesComponent implements OnInit {
     smith.ConstAdmCircles.displayMinor(this.constCircles.admittance.minor);
     smith.ConstQCircles  .visibility(this.constCircles.q.display);
     smith.ConstSwrCircles.visibility(this.constCircles.swr.display);
+  }
+
+  public back() {
+    this.router.navigate([ '/main', {
+      outlets: { 'left': [ 'smith' ] }
+    }]);
   }
 }

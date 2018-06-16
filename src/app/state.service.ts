@@ -4,7 +4,8 @@ import { S1P } from '../../libs/smith/src/SnP';
 
 @Injectable()
 export class StateService {
-  smith: Smith|null = null;
+  smith = new Smith();
+
   constCircles = {
     impedance: { display: true, minor: false, },
     admittance: { display: false, minor: false, },

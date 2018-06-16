@@ -24,24 +24,18 @@
           <input hidden type="file" #imgFileInput (change)="loadData($event)" />
         </mat-menu>
 
-        <a mat-list-item routerLink="/cursor">Cursor</a>
-        <a mat-list-item routerLink="/markers">Markers</a>
-        <a mat-list-item routerLink="/const-circles">Constant Circles</a>
-        <a mat-list-item routerLink="/plot">Plot</a>
+        <a mat-list-item [routerLink]="['/main', { outlets: { left: [ 'smith' ] }}]">Smith</a>
+        <a mat-list-item [routerLink]="['/main', { outlets: { left: [ 'plot' ] }}]">Plot</a>
+
+        <a mat-list-item [routerLink]="['/main', { outlets: { right: [ 'cursor' ] }}]">Cursor</a>
+        <a mat-list-item [routerLink]="['/main', { outlets: { right: [ 'markers' ] }}]">Markers</a>
+
         <a mat-list-item>Help</a>
       </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <div class="content">
-        <div class="smith-container mat-elevation-z4">
-          <div id="smith"></div>
-        </div>
-
-        <div class="mat-elevation-z4 cursor-div" style="background-color: white">
-          <router-outlet></router-outlet>
-        </div>
-      </div>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
