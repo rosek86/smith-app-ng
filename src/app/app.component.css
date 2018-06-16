@@ -8,6 +8,10 @@
   right: 0;
 }
 
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
 .toolbar {
   z-index: 2;
 }
@@ -27,4 +31,21 @@ h1.app-name {
   /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
      `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
+}
+
+.sidenav-left {
+  min-width: 100px;
+}
+
+.sidenav-right {
+  min-width: 100px;
+}
+
+.menu-first {
+  margin-left: 20px;
+}
+
+.menu-button {
+  min-width: 66px;
+  margin-top: 2px;
 }

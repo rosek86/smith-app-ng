@@ -73,14 +73,13 @@ export class MarkersComponent implements OnInit {
     };
   }
 
-  public selectCursor(): void {
-    this.router.navigate([ '/cursor' ]);
-  }
-
-  public selectMarkers(): void {
-  }
-
   public markerDetails(row: Element): void {
-    this.router.navigate(['marker', row.datasetNo, row.markerNo ]);
+    this.router.navigate(['/main', {
+      outlets: {
+        'right': [
+          `marker`, { dataset: row.datasetNo, marker: row.markerNo }
+        ]
+      }
+    }]);
   }
 }

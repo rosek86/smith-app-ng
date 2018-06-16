@@ -2,7 +2,7 @@
   <mat-toolbar-row>
     <span>{{valueName}}</span>
     <span class="toolbar-spacer"></span>
-    <button mat-button routerLink="/markers">Back</button>
+    <button mat-button [routerLink]="['/main', { outlets: { right: 'markers' }}]">Back</button>
   </mat-toolbar-row>
 </mat-toolbar>
 <div>

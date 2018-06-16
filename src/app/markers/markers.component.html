@@ -2,14 +2,6 @@
   <mat-toolbar-row>
     <span>{{valueName}}</span>
     <span class="toolbar-spacer"></span>
-    <mat-button-toggle-group #group="matButtonToggleGroup" value="markers">
-      <mat-button-toggle value="cursor" matTooltip="Cursor" (click)="selectCursor()">
-        <mat-icon>mouse</mat-icon>
-      </mat-button-toggle>
-      <mat-button-toggle value="markers" matTooltip="Markers" (click)="selectMarkers()">
-        <mat-icon>details</mat-icon>
-      </mat-button-toggle>
-    </mat-button-toggle-group>
   </mat-toolbar-row>
 </mat-toolbar>
 <div>

@@ -41,13 +41,13 @@ import { SmithComponent } from './smith/smith.component';
 const routes: Routes = [
   { path: '', redirectTo: '/main/(left:smith//right:cursor)', pathMatch: 'full' },
   { path: 'main', component: MainComponent, children: [
-    { path: 'plot',                     component: PlotComponent,         outlet: 'left'  },
-    { path: 'smith',                    component: SmithComponent,        outlet: 'left'  },
-    { path: 'smith-settings',           component: ConstCirclesComponent, outlet: 'left'  },
+    { path: 'plot',           component: PlotComponent,           outlet: 'left'  },
+    { path: 'smith',          component: SmithComponent,          outlet: 'left'  },
+    { path: 'smith-settings', component: ConstCirclesComponent,   outlet: 'left'  },
 
-    { path: 'cursor',                   component: CursorComponent,       outlet: 'right' },
-    { path: 'markers',                  component: MarkersComponent,      outlet: 'right' },
-    { path: 'marker/:dataset/:marker',  component: MarkerDetailsComponent, outlet: 'right' },
+    { path: 'cursor',         component: CursorComponent,         outlet: 'right' },
+    { path: 'markers',        component: MarkersComponent,        outlet: 'right' },
+    { path: 'marker',         component: MarkerDetailsComponent,  outlet: 'right' },
   ]},
   { path: '**', redirectTo: '/main/(left:smith//right:cursor)' },
 ];
@@ -67,7 +67,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    RouterModule.forRoot(routes, { enableTracing: false }),
+    RouterModule.forRoot(routes, { enableTracing: true }),
     HttpClientModule,
     ReactiveFormsModule,
     LayoutModule,
