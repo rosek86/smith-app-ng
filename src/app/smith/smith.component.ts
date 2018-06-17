@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
-import { Smith } from '../../../libs/smith/src/Smith';
 import { StateService } from '../state.service';
+
+import * as d3 from 'd3';
 
 @Component({
   selector: 'app-smith',
@@ -18,12 +19,14 @@ export class SmithComponent implements OnInit {
     this.state.smith.draw('#smith', '100%');
   }
 
+  private getContainerSize(): { width: number, height: number } {
+    const container = d3.select<HTMLElement, {}>('#smith').node();
+    return container.getBoundingClientRect();
+  }
+
   edit(): void {
     this.router.navigate(['/main', {
       outlets: { 'left': [ 'smith-settings' ] }
     }]);
   }
 }
-
-
-

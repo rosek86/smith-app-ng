@@ -37,6 +37,7 @@ import { MarkerDetailsComponent } from './marker-details/marker-details.componen
 import { PlotComponent } from './plot/plot.component';
 import { MainComponent } from './main/main.component';
 import { SmithComponent } from './smith/smith.component';
+import { TuneComponent } from './tune/tune.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main/(left:smith//right:cursor)', pathMatch: 'full' },
@@ -48,6 +49,7 @@ const routes: Routes = [
     { path: 'cursor',         component: CursorComponent,         outlet: 'right' },
     { path: 'markers',        component: MarkersComponent,        outlet: 'right' },
     { path: 'marker',         component: MarkerDetailsComponent,  outlet: 'right' },
+    { path: 'tune',           component: TuneComponent,           outlet: 'right' },
   ]},
   { path: '**', redirectTo: '/main/(left:smith//right:cursor)' },
 ];
@@ -61,7 +63,8 @@ const routes: Routes = [
     MarkerDetailsComponent,
     PlotComponent,
     MainComponent,
-    SmithComponent
+    SmithComponent,
+    TuneComponent
   ],
   imports: [
     BrowserModule,

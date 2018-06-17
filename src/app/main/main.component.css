@@ -8,15 +8,33 @@
 }
 
 .left-panel {
+  background-color: white;
   height: calc(100vh - 64px - 40px);
+  width: 100%;
+  /* padding-top: calc(100% + 64px);
+  position: relative; */
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
 
 .right-panel {
+  background-color: white;
   height: calc(100vh - 64px - 40px);
+  width: 100%;
+  /* padding-top: calc(100% + 64px);
+  position: relative; */
   grid-column: 2 / 3;
   grid-row: 1 / 2;
+}
+
+.panel-inner {
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; */
+  height: 100%;
+  width: 100%;
 }
 
 .cursor-row {

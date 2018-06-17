@@ -1,0 +1,31 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>{{title}}</span>
+    <span class="toolbar-spacer"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div>
+  <form>
+    <mat-form-field flex>
+      <input matInput placeholder="Series Cap" value="0.0" [(ngModel)]="seriesCap" name="seriesCap">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Shunt Cap" value="0.0" [(ngModel)]="shuntCap" name="shuntCap">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Series Ind" value="0.0" [(ngModel)]="seriesInd" name="seriesInd">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Shunt Ind" value="0.0" [(ngModel)]="shuntInd" name="shuntInd">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Series Res" value="0.0" [(ngModel)]="seriesRes" name="seriesRes">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Shunt Res" value="0.0" [(ngModel)]="shuntRes" name="shuntRes">
+    </mat-form-field>
+
+    <button mat-raised-button><mat-icon svgIcon="series-ind"></mat-icon></button>
+    <button mat-button (click)="calculate()">Update</button>
+  </form>
+</div>

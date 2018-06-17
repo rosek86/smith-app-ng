@@ -3,7 +3,7 @@ import { MatTableDataSource, MatTable } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs';
 import { StateService } from '../state.service';
-import { SmithMarkerEvent, SmithCursorEvent, SmithEventType } from '../../../libs/smith/src/Smith';
+import { SmithCursorEvent, SmithEventType } from '../../../libs/smith/src/Smith';
 import { Router } from '@angular/router';
 
 interface Element {
@@ -34,7 +34,7 @@ export class CursorComponent implements OnInit {
 
   @ViewChild(MatTable) matTable: MatTable<Element>;
 
-  constructor(private router: Router, private state: StateService) { }
+  constructor(private state: StateService) { }
 
   ngOnInit() {
     if (this.state.smith === null) {

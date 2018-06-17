@@ -1,12 +1,12 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { OnInit, OnDestroy } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material';
 
-import { Smith, SmithEvent, SmithEventType, SmithCursorEvent, SmithMarkerEvent } from '../../libs/smith/src/Smith';
-import { S1P, S1PEntry } from '../../libs/smith/src/SnP';
+import { S1P } from '../../libs/smith/src/SnP';
 
 import { StateService } from './state.service';
-import { SmithConstantCircle } from '../../libs/smith/src/SmithConstantCircle';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +17,13 @@ export class AppComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
-  constructor(private state: StateService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(mdIconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
+    private state: StateService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    mdIconRegistry.addSvgIcon('series-ind', sanitizer.bypassSecurityTrustResourceUrl('assets/series-ind.svg'));
   }
 
   ngOnInit(): void {
@@ -36,28 +39,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (input.files && input.files.length > 0) {
       const data = await this.openFile(input.files[0]);
       const values = this.parseTouchstone(data);
-
-      // const calculator = new SmithConstantCircle(50);
-      // .map((entry) => {
-      //   const freq = entry.freq;
-
-      //   let [ R, X ] = calculator.denormalize(
-      //     calculator.reflectionCoefficientToImpedance(entry.point)
-      //   );
-
-      //   const C = 100e-12; // 100 pF
-      //   const Xc = calculator.capacitanceToReactance(C, freq);
-
-      //   R += 0;
-      //   X += X + Xc;
-
-      //   const point = calculator.impedanceToReflectionCoefficient(
-      //     calculator.normalize([ R, X ])
-      //   );
-
-      //   return { freq, point };
-      // });
-
       this.state.addDataSet(values);
     }
   }
