@@ -16,7 +16,7 @@ export class SmithComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.state.smith.draw('#smith', '100%');
+    this.state.smith.draw('#smith');
   }
 
   private getContainerSize(): { width: number, height: number } {

@@ -70,7 +70,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    RouterModule.forRoot(routes, { enableTracing: true }),
+    RouterModule.forRoot(routes, { enableTracing: true, useHash: true }),
     HttpClientModule,
     ReactiveFormsModule,
     LayoutModule,

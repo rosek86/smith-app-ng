@@ -1,15 +1,19 @@
+<div>
 <mat-toolbar>
   <mat-toolbar-row>
     <span>{{valueName}}</span>
     <span class="toolbar-spacer"></span>
   </mat-toolbar-row>
 </mat-toolbar>
-<div>
-  <mat-table #matTable [dataSource]="dataSourceInput">
-    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-      <mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
-    </ng-container>
+</div>
+<div class="container">
+  <div class="item">
+    <mat-table #matTable [dataSource]="dataSourceInput">
+      <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+        <mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
+      </ng-container>
 
-    <mat-row *matRowDef="let data; columns: columnsToDisplay;"></mat-row>
-  </mat-table>
+      <mat-row *matRowDef="let data; columns: columnsToDisplay;"></mat-row>
+    </mat-table>
+  </div>
 </div>
