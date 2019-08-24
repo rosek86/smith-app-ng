@@ -15,13 +15,14 @@ import { StateService } from './state.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
+  private mobileQueryListener: () => void;
 
   constructor(mdIconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
-    private state: StateService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+              private state: StateService, changeDetectorRef: ChangeDetectorRef,
+              media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this.mobileQueryListener);
 
     mdIconRegistry.addSvgIcon('series-ind', sanitizer.bypassSecurityTrustResourceUrl('assets/series-ind.svg'));
   }
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.mobileQuery.removeListener(this.mobileQueryListener);
   }
 
   public async loadData(evt: Event): Promise<void> {
@@ -59,7 +60,7 @@ export class AppComponent implements OnInit, OnDestroy {
       if (line.charAt(0) === '!') { continue; }
       if (line.charAt(0) === '#') { continue; }
 
-      const row = line.trim().split(/ +/g);
+      const row = line.trim().split(/\s+/g);
       if (row.length !== 3) { continue; }
 
       const value = row.map((v) => parseFloat(v));

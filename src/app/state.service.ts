@@ -21,7 +21,7 @@ export class StateService {
 
   public addDataSet(data: S1P) {
     this.dataSets.push(data);
-    // this.smith.addS1P(data);
+    this.smith.addS1P(data);
 
     this.dataSetAdded.emit(data);
   }
