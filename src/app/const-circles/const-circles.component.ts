@@ -10,10 +10,10 @@ import { StateService } from '../state.service';
 })
 export class ConstCirclesComponent implements OnInit {
   constCircles = {
-    impedance: { display: true, minor: false, },
+    impedance:  { display: true,  minor: false, },
     admittance: { display: false, minor: false, },
-    swr: { display: false },
-    q: { display: false }
+    swr:        { display: false, minor: false, },
+    q:          { display: false, minor: false, }
   };
 
   constructor(private router: Router, private state: StateService) {
@@ -24,19 +24,13 @@ export class ConstCirclesComponent implements OnInit {
   }
 
   public change() {
-    const smith = this.state.smith;
-
-    // smith.ConstImpCircles.visibility(this.constCircles.impedance.display);
-    // smith.ConstImpCircles.displayMinor(this.constCircles.impedance.minor);
-    // smith.ConstAdmCircles.visibility(this.constCircles.admittance.display);
-    // smith.ConstAdmCircles.displayMinor(this.constCircles.admittance.minor);
-    // smith.ConstQCircles  .visibility(this.constCircles.q.display);
-    // smith.ConstSwrCircles.visibility(this.constCircles.swr.display);
+    this.state.constCircles = this.constCircles;
+    this.state.updataVisibility();
   }
 
   public back() {
     this.router.navigate([ '/main', {
-      outlets: { 'left': [ 'smith' ] }
+      outlets: { left: [ 'smith' ] }
     }]);
   }
 }

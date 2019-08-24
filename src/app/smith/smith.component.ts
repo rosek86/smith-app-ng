@@ -17,16 +17,12 @@ export class SmithComponent implements OnInit {
 
   ngOnInit(): void {
     this.state.smith.draw('#smith');
-  }
-
-  private getContainerSize(): { width: number, height: number } {
-    const container = d3.select<HTMLElement, {}>('#smith').node();
-    return container.getBoundingClientRect();
+    this.state.updataVisibility();
   }
 
   edit(): void {
     this.router.navigate(['/main', {
-      outlets: { 'left': [ 'smith-settings' ] }
+      outlets: { left: [ 'smith-settings' ] }
     }]);
   }
 }
