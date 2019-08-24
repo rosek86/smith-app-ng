@@ -30,7 +30,7 @@ export class MarkersComponent implements OnInit {
   tableDataSource = new MatTableDataSource(this.data);
   dataSourceInput: DataSource<Element> | Observable<Element[]> | Element[] | null = this.data;
 
-  @ViewChild(MatTable) matTable: MatTable<Element>;
+  @ViewChild(MatTable, { static: false }) matTable: MatTable<Element>;
 
   constructor(private router: Router, private state: StateService) { }
 

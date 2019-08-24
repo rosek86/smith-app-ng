@@ -44,9 +44,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private openFile(file: Blob): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
+    return new Promise<string>((resolve) => {
       const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
+      reader.onload = () => resolve(reader.result as string);
       reader.readAsText(file);
     });
   }

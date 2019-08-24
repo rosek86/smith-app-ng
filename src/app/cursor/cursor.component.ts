@@ -32,7 +32,7 @@ export class CursorComponent implements OnInit {
   tableDataSource = new MatTableDataSource(this.data);
   dataSourceInput: DataSource<Element> | Observable<Element[]> | Element[] | null = this.data;
 
-  @ViewChild(MatTable) matTable: MatTable<Element>;
+  @ViewChild(MatTable, { static: false }) matTable: MatTable<Element>;
 
   constructor(private state: StateService) { }
 
