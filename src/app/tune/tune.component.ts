@@ -44,7 +44,7 @@ export class TuneComponent implements OnInit {
       return entry;
     });
 
-    this.state.smith.addS1P(data);
+    // this.state.smith.addS1P(data);
   }
 
   private addIdealSeriesCap(entry: S1PEntry, C: number): S1PEntry {

@@ -26,12 +26,12 @@ export class ConstCirclesComponent implements OnInit {
   public change() {
     const smith = this.state.smith;
 
-    smith.ConstImpCircles.visibility(this.constCircles.impedance.display);
-    smith.ConstImpCircles.displayMinor(this.constCircles.impedance.minor);
-    smith.ConstAdmCircles.visibility(this.constCircles.admittance.display);
-    smith.ConstAdmCircles.displayMinor(this.constCircles.admittance.minor);
-    smith.ConstQCircles  .visibility(this.constCircles.q.display);
-    smith.ConstSwrCircles.visibility(this.constCircles.swr.display);
+    // smith.ConstImpCircles.visibility(this.constCircles.impedance.display);
+    // smith.ConstImpCircles.displayMinor(this.constCircles.impedance.minor);
+    // smith.ConstAdmCircles.visibility(this.constCircles.admittance.display);
+    // smith.ConstAdmCircles.displayMinor(this.constCircles.admittance.minor);
+    // smith.ConstQCircles  .visibility(this.constCircles.q.display);
+    // smith.ConstSwrCircles.visibility(this.constCircles.swr.display);
   }
 
   public back() {
