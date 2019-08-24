@@ -39,7 +39,7 @@ export class StateService {
     smith.ConstSusceptance.visibility(this.constCircles.admittance.display);
     smith.ConstSusceptance.displayMinor(this.constCircles.admittance.minor);
 
-    // smith.ConstQCircles  .visibility(this.constCircles.q.display);
-    // smith.ConstSwrCircles.visibility(this.constCircles.swr.display);
+    smith.ConstQCircles.visibility(this.constCircles.q.display);
+    smith.ConstSwrCircles.visibility(this.constCircles.swr.display);
   }
 }
