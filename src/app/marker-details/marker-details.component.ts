@@ -3,7 +3,7 @@ import { MatTableDataSource, MatTable } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
 import { Observable ,  Subscription } from 'rxjs';
 import { StateService } from '../state.service';
-import { SmithMarkerEvent, SmithCursorEvent, SmithEventType } from '../../../libs/smith/src/Smith';
+import { SmithMarkerEvent, SmithEventType } from '../../../libs/smith/src/Smith';
 import { Router, ActivatedRoute } from '@angular/router';
 
 interface Element {
@@ -46,8 +46,8 @@ export class MarkerDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.route.queryParams.subscribe((params) => {
-      this.datasetNo = +params['datasetNo'] || 0;
-      this.markerNo  = +params['markerNo']  || 0;
+      this.datasetNo = +params.datasetNo || 0;
+      this.markerNo  = +params.markerNo  || 0;
 
       this.valueName = `Marker ${this.datasetNo + 1}-${this.markerNo + 1}`;
 

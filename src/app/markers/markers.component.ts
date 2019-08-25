@@ -55,8 +55,6 @@ export class MarkersComponent implements OnInit {
 
     this.data = data;
     this.dataSourceInput = data;
-
-    // this.data[8] = { name: 'Value', value: smith.getReactanceComponentValue(rc, freq) };
   }
 
   private getDataEntry(datasetNo: number, markerNo: number, entry: S1PEntry): Element {
@@ -76,7 +74,7 @@ export class MarkersComponent implements OnInit {
   public markerDetails(row: Element): void {
     this.router.navigate(['/main', {
       outlets: {
-        'right': [
+        right: [
           `marker`, { dataset: row.datasetNo, marker: row.markerNo }
         ]
       }
