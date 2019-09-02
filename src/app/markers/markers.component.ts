@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 import { SmithMarkerEvent, SmithEventType } from '../../../libs/smith/src/Smith';
 import { S1PEntry } from '../../../libs/smith/src/SnP';
+import { Complex } from 'libs/smith/src/complex/Complex';
 
 interface Element {
   datasetNo: number;
@@ -60,7 +61,7 @@ export class MarkersComponent implements OnInit {
   private getDataEntry(datasetNo: number, markerNo: number, entry: S1PEntry): Element {
     const smith = this.state.smith;
 
-    const imp = smith.calcImpedance(entry.point);
+    const imp = smith.calcImpedance(Complex.fromArray(entry.point));
     const freq = entry.freq;
 
     return {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SmithConstantCircle } from '../../../libs/smith/src/SmithConstantCircle';
 import { StateService } from '../state.service';
 import { S1P, S1PEntry } from '../../../libs/smith/src/SnP';
+import { Complex } from 'libs/smith/src/complex/Complex';
 
 @Component({
   selector: 'app-tune',
@@ -18,7 +19,7 @@ export class TuneComponent implements OnInit {
   seriesRes = '0.0';
   shuntRes = '0.0';
 
-  private calculator = new SmithConstantCircle(50);
+  private calc = new SmithConstantCircle(50);
   private data: S1P|null = null;
 
   constructor(private state: StateService) { }
@@ -48,32 +49,40 @@ export class TuneComponent implements OnInit {
   }
 
   private addIdealSeriesCap(entry: S1PEntry, C: number): S1PEntry {
-    const Xc = this.calculator.capacitanceToReactance(C, entry.freq);
-    return { freq: entry.freq, point: this.calculator.addImpedance(entry.point, [0, Xc]) };
+    const rc = Complex.fromArray(entry.point);
+    const Xc = this.calc.capacitanceToReactance(C, entry.freq);
+    return { freq: entry.freq, point: this.calc.addImpedance(rc, Xc).toArray() };
   }
 
   private addIdealShuntCap(entry: S1PEntry, C: number): S1PEntry {
-    const Xc = this.calculator.capacitanceToReactance(C, entry.freq);
-    const Bc = 1 / Xc;
-    return { freq: entry.freq, point: this.calculator.addAdmittance(entry.point, [0, Bc]) };
+    const rc = Complex.fromArray(entry.point);
+    const Xc = this.calc.capacitanceToReactance(C, entry.freq);
+    const Bc = Complex.from(1, 0).div(Xc);
+    return { freq: entry.freq, point: this.calc.addAdmittance(rc, Bc).toArray() };
   }
 
   private addIdealSeriesInd(entry: S1PEntry, L: number): S1PEntry {
-    const Xl = this.calculator.inductanceToReactance(L, entry.freq);
-    return { freq: entry.freq, point: this.calculator.addImpedance(entry.point, [0, Xl]) };
+    const rc = Complex.fromArray(entry.point);
+    const Xl = this.calc.inductanceToReactance(L, entry.freq);
+    return { freq: entry.freq, point: this.calc.addImpedance(rc, Xl).toArray() };
   }
 
   private addIdealShuntInd(entry: S1PEntry, L: number): S1PEntry {
-    const Xl = this.calculator.inductanceToReactance(L, entry.freq);
-    const Bl = 1 / Xl;
-    return { freq: entry.freq, point: this.calculator.addAdmittance(entry.point, [0, Bl]) };
+    const rc = Complex.fromArray(entry.point);
+    const Xl = this.calc.inductanceToReactance(L, entry.freq);
+    const Bl = Complex.from(1, 0).div(Xl);
+    return { freq: entry.freq, point: this.calc.addAdmittance(rc, Bl).toArray() };
   }
 
   private addIdealSeriesRes(entry: S1PEntry, R: number): S1PEntry {
-    return { freq: entry.freq, point: this.calculator.addImpedance(entry.point, [R, 0]) };
+    const rc = Complex.fromArray(entry.point);
+    const r = Complex.from(R, 0);
+    return { freq: entry.freq, point: this.calc.addImpedance(rc, r).toArray() };
   }
 
   private addIdealShuntRes(entry: S1PEntry, R: number): S1PEntry {
-    return { freq: entry.freq, point: this.calculator.addAdmittance(entry.point, [1 / R, 0]) };
+    const rc = Complex.fromArray(entry.point);
+    const r = Complex.from(1 / R, 0);
+    return { freq: entry.freq, point: this.calc.addAdmittance(rc, r).toArray() };
   }
 }

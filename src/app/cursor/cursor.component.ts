@@ -27,6 +27,10 @@ export class CursorComponent implements OnInit {
     { name: 'VSWR'                },
     { name: 'Return Loss [dB]'    },
     { name: 'Mismatch Loss [dB]'  },
+    { name: 'dBS [dB]'            },
+    { name: 'RFL. COEFF. P'       },
+    { name: 'RFL. COEFF. E or I'  },
+    { name: 'TRANSM. COEFF. P'    },
   ];
 
   tableDataSource = new MatTableDataSource(this.data);
@@ -61,7 +65,9 @@ export class CursorComponent implements OnInit {
     this.data[4].value = `${evt.swr.toFixed(3)} : 1`;
     this.data[5].value = `${evt.returnLoss.toFixed(3)}`;
     this.data[6].value = `${evt.mismatchLoss.toFixed(3)}`;
-    delete this.data[7];
-    delete this.data[8];
+    this.data[7].value = evt.dBS.toFixed(3);
+    this.data[8].value = evt.rflCoeffP.toFixed(3);
+    this.data[9].value = evt.rflCoeffEOrI.toFixed(3);
+    this.data[10].value = evt.transmCoeffP.toFixed(3);
   }
 }

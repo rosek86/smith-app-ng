@@ -6,6 +6,7 @@ import { S1P } from '../../../libs/smith/src/SnP';
 
 import * as d3 from 'd3';
 import { Subscription } from 'rxjs';
+import { Complex } from 'libs/smith/src/complex/Complex';
 
 @Component({
   selector: 'app-plot',
@@ -59,9 +60,7 @@ export class PlotComponent implements OnInit, OnDestroy {
     return data.map((e): [number, number] => {
       const magnitude =
         calculator.dB(
-          calculator.magnitude(
-            e.point
-          )
+          Complex.fromArray(e.point).abs()
         );
 
       return [ e.freq, magnitude ];
